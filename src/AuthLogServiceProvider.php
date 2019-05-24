@@ -22,7 +22,7 @@ class AuthLogServiceProvider extends ServiceProvider
 
         $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'auth-log');
 
-        $this->mergeConfigFrom(__DIR__ . '/../config/auth-log.php', 'auth-log');
+        $this->mergeConfigFrom(__DIR__.'/../config/auth-log.php', 'auth-log');
 
         if ($this->app->runningInConsole()) {
             $this->publishes([
@@ -38,7 +38,7 @@ class AuthLogServiceProvider extends ServiceProvider
             ], 'auth-log-translations');
 
             $this->publishes([
-                __DIR__ . '/../config/auth-log.php' => config_path('auth-log.php'),
+                __DIR__.'/../config/auth-log.php' => config_path('auth-log.php'),
             ], 'auth-log-config');
         }
     }

@@ -1,13 +1,12 @@
 <?php
 
-
 namespace SamuelNitsche\AuthLog\Tests;
 
 use CreateAuthLogTable;
-use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use Illuminate\Database\Schema\Blueprint;
 use SamuelNitsche\AuthLog\AuthLogServiceProvider;
+use Orchestra\Testbench\TestCase as OrchestraTestCase;
 
 abstract class TestCase extends OrchestraTestCase
 {
@@ -21,7 +20,7 @@ abstract class TestCase extends OrchestraTestCase
     protected function getPackageProviders($app): array
     {
         return [
-            AuthLogServiceProvider::class
+            AuthLogServiceProvider::class,
         ];
     }
 
@@ -34,7 +33,7 @@ abstract class TestCase extends OrchestraTestCase
 
     protected function createAuthLogTable()
     {
-        include_once __DIR__ . '/../database/migrations/2017_09_01_000000_create_auth_log_table.php';
+        include_once __DIR__.'/../database/migrations/2017_09_01_000000_create_auth_log_table.php';
 
         (new CreateAuthLogTable())->up();
     }
@@ -48,5 +47,4 @@ abstract class TestCase extends OrchestraTestCase
             $table->timestamps();
         });
     }
-
 }
