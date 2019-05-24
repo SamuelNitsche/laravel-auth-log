@@ -6,7 +6,7 @@ This package is a modified and extended version of [https://github.com/yadahan/l
 
 ## Installation
 
-> Laravel Auth Log requires Laravel 5.5 or higher, and PHP 7.0+.
+> Laravel Auth Log requires Laravel 5.6 or higher, and PHP 7.1+.
 
 You may use Composer to install Laravel Auth Log into your Laravel project:
 
