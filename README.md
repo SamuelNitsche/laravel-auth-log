@@ -1,4 +1,4 @@
-# Laravel Authentication Log
+# Laravel Auth Log
 
 [![Build Status](https://travis-ci.com/SamuelNitsche/laravel-auth-log.svg?branch=master)](https://travis-ci.com/SamuelNitsche/laravel-auth-log)
 
