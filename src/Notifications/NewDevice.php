@@ -51,10 +51,10 @@ class NewDevice extends Notification implements ShouldQueue
     public function toMail($notifiable)
     {
         return (new MailMessage)
-            ->subject(trans('auth-log::messages.subject'))
+            ->subject(trans('auth-log::messages.subject', ['app' => config('app.name')]))
             ->markdown('auth-log::emails.new', [
                 'account' => $notifiable,
-                'content' => trans('auth_log::messages.content'),
+                'content' => trans('auth-log::messages.content', ['app' => config('app.name')]),
                 'time' => $this->authLog->login_at,
                 'ipAddress' => $this->authLog->ip_address,
                 'browser' => $this->authLog->user_agent,
