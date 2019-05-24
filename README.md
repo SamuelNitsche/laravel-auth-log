@@ -1,4 +1,7 @@
-# Laravel Authentication Log
+# Laravel Auth Log
+
+[![Build Status](https://travis-ci.com/SamuelNitsche/laravel-auth-log.svg?branch=master)](https://travis-ci.com/SamuelNitsche/laravel-auth-log)
+[![StyleCI](https://github.styleci.io/repos/188419456/shield?branch=master)](https://github.styleci.io/repos/188419456)
 
 Laravel Auth Log is a package to automatically log all logins of your users. It can also send notifications when a successful login was made from an unknown device.
 

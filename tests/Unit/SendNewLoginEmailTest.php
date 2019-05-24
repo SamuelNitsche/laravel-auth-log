@@ -4,11 +4,10 @@ namespace SamuelNitsche\AuthLog\Tests\Unit;
 
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Event;
-use Illuminate\Support\Facades\Notification;
-use SamuelNitsche\AuthLog\Notifications\NewDevice;
-use SamuelNitsche\AuthLog\Tests\Models\User;
 use SamuelNitsche\AuthLog\Tests\TestCase;
+use Illuminate\Support\Facades\Notification;
+use SamuelNitsche\AuthLog\Tests\Models\User;
+use SamuelNitsche\AuthLog\Notifications\NewDevice;
 
 class SendNewLoginEmailTest extends TestCase
 {
