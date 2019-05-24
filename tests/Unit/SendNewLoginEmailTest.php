@@ -33,7 +33,12 @@ class SendNewLoginEmailTest extends TestCase
 
         Auth::login($user);
 
-        Notification::assertSentTo($user, NewDevice::class);
+        Notification::assertSentTo($user, NewDevice::class, function ($email) use ($user) {
+            $subject = trans('auth-log::messages.subject', ['app' => config('app.name')]);
+            $content = trans('auth-log::messages.content', ['app' => config('app.name')]);
+
+            return $email->subject = $subject && $email->content = $content;
+        });
 
         Auth::logout();
 
