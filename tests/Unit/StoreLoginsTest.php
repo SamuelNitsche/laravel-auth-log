@@ -2,6 +2,7 @@
 
 namespace SamuelNitsche\AuthLog\Tests\Unit;
 
+use Illuminate\Support\Facades\Auth;
 use Mockery;
 use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Event;
@@ -17,9 +18,7 @@ class StoreLoginsTest extends TestCase
     {
         $user = User::create(['name' => 'JohnDoe']);
 
-        $login = new Login($user, false);
-
-        Event::dispatch($login);
+        Auth::login($user);
 
         $this->assertDatabaseHas('auth_log', [
             'authenticatable_id' => $user->id

@@ -3,12 +3,13 @@
 namespace SamuelNitsche\AuthLog\Tests\Unit;
 
 use Illuminate\Auth\Events\Logout;
+use Illuminate\Support\Facades\Auth;
 use Mockery;
 use Illuminate\Auth\Events\Login;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Event;
 use SamuelNitsche\AuthLog\Listeners\LogSuccessfulLogin;
 use SamuelNitsche\AuthLog\Listeners\LogSuccessfulLogout;
+use SamuelNitsche\AuthLog\Tests\Models\User;
 use SamuelNitsche\AuthLog\Tests\TestCase;
 
 class AuthLogServiceProviderTest extends TestCase
@@ -19,10 +20,9 @@ class AuthLogServiceProviderTest extends TestCase
         $listener = Mockery::spy(LogSuccessfulLogin::class);
         app()->instance(LogSuccessfulLogin::class, $listener);
 
-        $user = new User();
-        $login = new Login($user, false);
+        $user = User::create(['name' => 'JohnDoe', 'email' => 'john@example.com']);
 
-        Event::dispatch($login);
+        Auth::login($user);
 
         $listener->shouldHaveReceived('handle')->with(Mockery::on(function ($event) use ($user) {
             return $event->user === $user;
@@ -35,10 +35,10 @@ class AuthLogServiceProviderTest extends TestCase
         $listener = Mockery::spy(LogSuccessfulLogout::class);
         app()->instance(LogSuccessfulLogout::class, $listener);
 
-        $user = new User();
-        $logout = new Logout($user);
+        $user = User::create(['name' => 'JohnDoe', 'email' => 'john@example.com']);
 
-        Event::dispatch($logout);
+        Auth::login($user);
+        Auth::logout($user);
 
         $listener->shouldHaveReceived('handle')->with(Mockery::on(function ($event) use ($user) {
             return $event->user === $user;
