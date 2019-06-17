@@ -28,7 +28,7 @@
     "require-dev": {
         "orchestra/database": "~3.5",
         "orchestra/testbench": "~3.5",
-        "phpunit/phpunit": "^7.5",
+        "phpunit/phpunit": "^8.2",
         "mockery/mockery": "dev-master"
     },
     "autoload": {
