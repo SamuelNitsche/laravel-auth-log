@@ -57,7 +57,8 @@ class NewDevice extends Notification implements ShouldQueue
                 'content' => trans('auth-log::messages.content', ['app' => config('app.name')]),
                 'time' => $this->authLog->login_at,
                 'ipAddress' => $this->authLog->ip_address,
-                'browser' => $this->authLog->user_agent,
+                'platform' => $this->authLog->platform,
+                'browser' => $this->authLog->browser,
             ]);
     }
 
@@ -78,7 +79,8 @@ class NewDevice extends Notification implements ShouldQueue
                     'Account' => $notifiable->email,
                     'Time' => $this->authLog->login_at->toCookieString(),
                     'IP Address' => $this->authLog->ip_address,
-                    'Browser' => $this->authLog->user_agent,
+                    'Platform' => $this->authLog->platform,
+                    'Browser' => $this->authLog->browser,
                 ]);
             });
     }

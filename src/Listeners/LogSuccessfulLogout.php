@@ -2,6 +2,7 @@
 
 namespace SamuelNitsche\AuthLog\Listeners;
 
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Auth\Events\Logout;
@@ -36,15 +37,20 @@ class LogSuccessfulLogout
     public function handle(Logout $event)
     {
         if ($event->user) {
+            $agent = new Agent();
+            $agent->setUserAgent($this->request->userAgent());
+
             $user = $event->user;
             $ip = $this->request->ip();
-            $userAgent = $this->request->userAgent();
-            $authenticationLog = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->first();
+            $platform = $agent->platform();
+            $browser = $agent->browser();
+            $authenticationLog = $user->authentications()->whereIpAddress($ip)->wherePlatform($platform)->whereBrowser($browser)->first();
 
             if (! $authenticationLog) {
                 $authenticationLog = new AuthLog([
                     'ip_address' => $ip,
-                    'user_agent' => $userAgent,
+                    'platform' => $platform,
+                    'browser' => $browser,
                 ]);
             }
 

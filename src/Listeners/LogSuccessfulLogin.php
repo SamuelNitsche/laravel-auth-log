@@ -5,6 +5,7 @@ namespace SamuelNitsche\AuthLog\Listeners;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Auth\Events\Login;
+use Jenssegers\Agent\Agent;
 use SamuelNitsche\AuthLog\AuthLog;
 use SamuelNitsche\AuthLog\Notifications\NewDevice;
 
@@ -36,14 +37,19 @@ class LogSuccessfulLogin
      */
     public function handle(Login $event)
     {
+        $agent = new Agent();
+        $agent->setUserAgent($this->request->userAgent());
+        
         $user = $event->user;
         $ip = $this->request->ip();
-        $userAgent = $this->request->userAgent();
-        $known = $user->authentications()->whereIpAddress($ip)->whereUserAgent($userAgent)->first();
+        $platform = $agent->platform();
+        $browser = $agent->browser();
+        $known = $user->authentications()->whereIpAddress($ip)->wherePlatform($platform)->whereBrowser($browser)->first();
 
         $authenticationLog = new AuthLog([
             'ip_address' => $ip,
-            'user_agent' => $userAgent,
+            'platform' => $platform,
+            'browser' => $browser,
             'login_at' => Carbon::now(),
         ]);
 

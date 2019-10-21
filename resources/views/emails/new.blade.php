@@ -2,10 +2,9 @@
 
 {{ $content }}
 
-**Account:** {{ $account->email }}<br>
-**Time:** {{ $time->toCookieString() }}<br>
+**Platform:** {{ $browser }} on {{ $platform }}
 **IP Address:** {{ $ipAddress }}<br>
-**Browser:** {{ $browser }}
+**Time:** {{ $time->toCookieString() }}<br>
 
 If this was you, you can ignore this alert. If you suspect any suspicious activity on your account, please change your password.
 
