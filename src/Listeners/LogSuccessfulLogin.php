@@ -2,10 +2,10 @@
 
 namespace SamuelNitsche\AuthLog\Listeners;
 
+use Jenssegers\Agent\Agent;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Auth\Events\Login;
-use Jenssegers\Agent\Agent;
 use SamuelNitsche\AuthLog\AuthLog;
 use SamuelNitsche\AuthLog\Notifications\NewDevice;
 
@@ -39,7 +39,7 @@ class LogSuccessfulLogin
     {
         $agent = new Agent();
         $agent->setUserAgent($this->request->userAgent());
-        
+
         $user = $event->user;
         $ip = $this->request->ip();
         $platform = $agent->platform();
