@@ -2,10 +2,9 @@
 
 namespace SamuelNitsche\AuthLog\Tests\Unit;
 
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
-use SamuelNitsche\AuthLog\Tests\TestCase;
 use SamuelNitsche\AuthLog\Tests\Models\User;
+use SamuelNitsche\AuthLog\Tests\TestCase;
 
 class StoreLoginsTest extends TestCase
 {
