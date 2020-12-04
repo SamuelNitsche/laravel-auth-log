@@ -2,8 +2,8 @@
 
 namespace SamuelNitsche\AuthLog\Console;
 
-use Illuminate\Support\Carbon;
 use Illuminate\Console\Command;
+use Illuminate\Support\Carbon;
 use SamuelNitsche\AuthLog\AuthLog;
 
 class ClearCommand extends Command
