@@ -2,10 +2,10 @@
 
 namespace SamuelNitsche\AuthLog\Listeners;
 
-use Jenssegers\Agent\Agent;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Auth\Events\Logout;
+use Jenssegers\Agent\Agent;
 use SamuelNitsche\AuthLog\AuthLog;
 
 class LogSuccessfulLogout

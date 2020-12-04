@@ -3,10 +3,10 @@
 namespace SamuelNitsche\AuthLog\Tests;
 
 use CreateAuthLogTable;
-use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
-use SamuelNitsche\AuthLog\AuthLogServiceProvider;
+use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
+use SamuelNitsche\AuthLog\AuthLogServiceProvider;
 
 abstract class TestCase extends OrchestraTestCase
 {
