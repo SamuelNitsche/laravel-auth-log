@@ -3,12 +3,12 @@
 namespace SamuelNitsche\AuthLog\Notifications;
 
 use Illuminate\Bus\Queueable;
-use SamuelNitsche\AuthLog\AuthLog;
-use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Messages\NexmoMessage;
 use Illuminate\Notifications\Messages\SlackMessage;
+use Illuminate\Notifications\Notification;
+use SamuelNitsche\AuthLog\AuthLog;
 
 class NewDevice extends Notification implements ShouldQueue
 {
@@ -34,7 +34,8 @@ class NewDevice extends Notification implements ShouldQueue
     /**
      * Get the notification's delivery channels.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return array
      */
     public function via($notifiable)
@@ -45,42 +46,44 @@ class NewDevice extends Notification implements ShouldQueue
     /**
      * Get the mail representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return MailMessage
      */
     public function toMail($notifiable)
     {
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject(trans('auth-log::messages.subject', ['app' => config('app.name')]))
             ->markdown('auth-log::emails.new', [
-                'account' => $notifiable,
-                'content' => trans('auth-log::messages.content', ['app' => config('app.name')]),
-                'time' => $this->authLog->login_at,
+                'account'   => $notifiable,
+                'content'   => trans('auth-log::messages.content', ['app' => config('app.name')]),
+                'time'      => $this->authLog->login_at,
                 'ipAddress' => $this->authLog->ip_address,
-                'platform' => $this->authLog->platform,
-                'browser' => $this->authLog->browser,
+                'platform'  => $this->authLog->platform,
+                'browser'   => $this->authLog->browser,
             ]);
     }
 
     /**
      * Get the Slack representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return SlackMessage
      */
     public function toSlack($notifiable)
     {
-        return (new SlackMessage)
+        return (new SlackMessage())
             ->from(config('app.name'))
             ->warning()
             ->content(trans('auth-log::messages.content', ['app' => config('app.name')]))
             ->attachment(function ($attachment) use ($notifiable) {
                 $attachment->fields([
-                    'Account' => $notifiable->email,
-                    'Time' => $this->authLog->login_at->toCookieString(),
+                    'Account'    => $notifiable->email,
+                    'Time'       => $this->authLog->login_at->toCookieString(),
                     'IP Address' => $this->authLog->ip_address,
-                    'Platform' => $this->authLog->platform,
-                    'Browser' => $this->authLog->browser,
+                    'Platform'   => $this->authLog->platform,
+                    'Browser'    => $this->authLog->browser,
                 ]);
             });
     }
@@ -88,12 +91,13 @@ class NewDevice extends Notification implements ShouldQueue
     /**
      * Get the Nexmo / SMS representation of the notification.
      *
-     * @param  mixed  $notifiable
+     * @param mixed $notifiable
+     *
      * @return NexmoMessage
      */
     public function toNexmo($notifiable)
     {
-        return (new NexmoMessage)
+        return (new NexmoMessage())
             ->content(trans('auth-log::messages.content', ['app' => config('app.name')]));
     }
 }
