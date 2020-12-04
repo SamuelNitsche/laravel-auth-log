@@ -2,10 +2,10 @@
 
 namespace SamuelNitsche\AuthLog\Tests\Models;
 
-use SamuelNitsche\AuthLog\AuthLogable;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\Authenticatable;
+use SamuelNitsche\AuthLog\AuthLogable;
 
 class User extends Model implements Authenticatable
 {
