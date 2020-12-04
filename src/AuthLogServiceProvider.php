@@ -2,8 +2,8 @@
 
 namespace SamuelNitsche\AuthLog;
 
-use Illuminate\Support\ServiceProvider;
 use Illuminate\Contracts\Events\Dispatcher;
+use Illuminate\Support\ServiceProvider;
 
 class AuthLogServiceProvider extends ServiceProvider
 {

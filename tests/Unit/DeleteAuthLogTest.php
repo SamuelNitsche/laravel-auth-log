@@ -3,11 +3,11 @@
 namespace SamuelNitsche\AuthLog\Tests\Unit;
 
 use Carbon\Carbon;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
-use SamuelNitsche\AuthLog\Tests\TestCase;
 use SamuelNitsche\AuthLog\Tests\Models\User;
+use SamuelNitsche\AuthLog\Tests\TestCase;
 
 class DeleteAuthLogTest extends TestCase
 {
