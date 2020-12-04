@@ -2,14 +2,12 @@
 
 namespace SamuelNitsche\AuthLog\Tests\Unit;
 
-use Mockery;
-use Illuminate\Auth\Events\Login;
-use Illuminate\Auth\Events\Logout;
 use Illuminate\Support\Facades\Auth;
-use SamuelNitsche\AuthLog\Tests\TestCase;
-use SamuelNitsche\AuthLog\Tests\Models\User;
+use Mockery;
 use SamuelNitsche\AuthLog\Listeners\LogSuccessfulLogin;
 use SamuelNitsche\AuthLog\Listeners\LogSuccessfulLogout;
+use SamuelNitsche\AuthLog\Tests\Models\User;
+use SamuelNitsche\AuthLog\Tests\TestCase;
 
 class AuthLogServiceProviderTest extends TestCase
 {
