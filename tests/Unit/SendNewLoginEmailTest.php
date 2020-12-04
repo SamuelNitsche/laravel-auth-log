@@ -2,12 +2,11 @@
 
 namespace SamuelNitsche\AuthLog\Tests\Unit;
 
-use Illuminate\Auth\Events\Login;
 use Illuminate\Support\Facades\Auth;
-use SamuelNitsche\AuthLog\Tests\TestCase;
 use Illuminate\Support\Facades\Notification;
-use SamuelNitsche\AuthLog\Tests\Models\User;
 use SamuelNitsche\AuthLog\Notifications\NewDevice;
+use SamuelNitsche\AuthLog\Tests\Models\User;
+use SamuelNitsche\AuthLog\Tests\TestCase;
 
 class SendNewLoginEmailTest extends TestCase
 {
@@ -32,7 +31,7 @@ class SendNewLoginEmailTest extends TestCase
 
         Auth::login($user);
 
-        Notification::assertSentTo($user, NewDevice::class, function ($email) use ($user) {
+        Notification::assertSentTo($user, NewDevice::class, function ($email) {
             $subject = trans('auth-log::messages.subject', ['app' => config('app.name')]);
             $content = trans('auth-log::messages.content', ['app' => config('app.name')]);
 
