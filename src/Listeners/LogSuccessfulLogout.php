@@ -48,11 +48,11 @@ class LogSuccessfulLogout
             $browser = $agent->browser();
             $authenticationLog = $user->authentications()->whereIpAddress($ip)->wherePlatform($platform)->whereBrowser($browser)->first();
 
-            if (!$authenticationLog) {
+            if (! $authenticationLog) {
                 $authenticationLog = new AuthLog([
                     'ip_address' => $ip,
-                    'platform'   => $platform,
-                    'browser'    => $browser,
+                    'platform' => $platform,
+                    'browser' => $browser,
                 ]);
             }
 

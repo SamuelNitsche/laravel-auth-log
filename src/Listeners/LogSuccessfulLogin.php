@@ -50,14 +50,14 @@ class LogSuccessfulLogin
 
         $authenticationLog = new AuthLog([
             'ip_address' => $ip,
-            'platform'   => $platform,
-            'browser'    => $browser,
-            'login_at'   => Carbon::now(),
+            'platform' => $platform,
+            'browser' => $browser,
+            'login_at' => Carbon::now(),
         ]);
 
         $user->authentications()->save($authenticationLog);
 
-        if (!$known && config('auth-log.notify')) {
+        if (! $known && config('auth-log.notify')) {
             $user->notify(new NewDevice($authenticationLog));
         }
     }

@@ -55,12 +55,12 @@ class NewDevice extends Notification implements ShouldQueue
         return (new MailMessage())
             ->subject(trans('auth-log::messages.subject', ['app' => config('app.name')]))
             ->markdown('auth-log::emails.new', [
-                'account'   => $notifiable,
-                'content'   => trans('auth-log::messages.content', ['app' => config('app.name')]),
-                'time'      => $this->authLog->login_at,
+                'account' => $notifiable,
+                'content' => trans('auth-log::messages.content', ['app' => config('app.name')]),
+                'time' => $this->authLog->login_at,
                 'ipAddress' => $this->authLog->ip_address,
-                'platform'  => $this->authLog->platform,
-                'browser'   => $this->authLog->browser,
+                'platform' => $this->authLog->platform,
+                'browser' => $this->authLog->browser,
             ]);
     }
 
@@ -79,11 +79,11 @@ class NewDevice extends Notification implements ShouldQueue
             ->content(trans('auth-log::messages.content', ['app' => config('app.name')]))
             ->attachment(function ($attachment) use ($notifiable) {
                 $attachment->fields([
-                    'Account'    => $notifiable->email,
-                    'Time'       => $this->authLog->login_at->toCookieString(),
+                    'Account' => $notifiable->email,
+                    'Time' => $this->authLog->login_at->toCookieString(),
                     'IP Address' => $this->authLog->ip_address,
-                    'Platform'   => $this->authLog->platform,
-                    'Browser'    => $this->authLog->browser,
+                    'Platform' => $this->authLog->platform,
+                    'Browser' => $this->authLog->browser,
                 ]);
             });
     }
