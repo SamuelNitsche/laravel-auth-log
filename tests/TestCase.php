@@ -4,6 +4,7 @@ namespace SamuelNitsche\AuthLog\Tests;
 
 use CreateAuthLogTable;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Notification;
 use Illuminate\Support\Facades\Schema;
 use Orchestra\Testbench\TestCase as OrchestraTestCase;
 use SamuelNitsche\AuthLog\AuthLogServiceProvider;
@@ -15,6 +16,8 @@ abstract class TestCase extends OrchestraTestCase
         parent::setUp();
 
         $this->setUpDatabase();
+        
+        Notification::fake();
     }
 
     protected function getPackageProviders($app): array
