@@ -2,10 +2,10 @@
 
 namespace SamuelNitsche\AuthLog\Listeners;
 
-use Jenssegers\Agent\Agent;
+use Illuminate\Auth\Events\Logout;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Auth\Events\Logout;
+use Jenssegers\Agent\Agent;
 use SamuelNitsche\AuthLog\AuthLog;
 
 class LogSuccessfulLogout
@@ -21,6 +21,7 @@ class LogSuccessfulLogout
      * Create the event listener.
      *
      * @param Request $request
+     *
      * @return void
      */
     public function __construct(Request $request)
@@ -31,7 +32,8 @@ class LogSuccessfulLogout
     /**
      * Handle the event.
      *
-     * @param  Logout  $event
+     * @param Logout $event
+     *
      * @return void
      */
     public function handle(Logout $event)
@@ -46,11 +48,11 @@ class LogSuccessfulLogout
             $browser = $agent->browser();
             $authenticationLog = $user->authentications()->whereIpAddress($ip)->wherePlatform($platform)->whereBrowser($browser)->first();
 
-            if (! $authenticationLog) {
+            if (!$authenticationLog) {
                 $authenticationLog = new AuthLog([
                     'ip_address' => $ip,
-                    'platform' => $platform,
-                    'browser' => $browser,
+                    'platform'   => $platform,
+                    'browser'    => $browser,
                 ]);
             }
 

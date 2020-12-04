@@ -2,10 +2,10 @@
 
 namespace SamuelNitsche\AuthLog\Listeners;
 
-use Jenssegers\Agent\Agent;
+use Illuminate\Auth\Events\Login;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
-use Illuminate\Auth\Events\Login;
+use Jenssegers\Agent\Agent;
 use SamuelNitsche\AuthLog\AuthLog;
 use SamuelNitsche\AuthLog\Notifications\NewDevice;
 
@@ -22,6 +22,7 @@ class LogSuccessfulLogin
      * Create the event listener.
      *
      * @param Request $request
+     *
      * @return void
      */
     public function __construct(Request $request)
@@ -32,7 +33,8 @@ class LogSuccessfulLogin
     /**
      * Handle the event.
      *
-     * @param  Login  $event
+     * @param Login $event
+     *
      * @return void
      */
     public function handle(Login $event)
@@ -48,14 +50,14 @@ class LogSuccessfulLogin
 
         $authenticationLog = new AuthLog([
             'ip_address' => $ip,
-            'platform' => $platform,
-            'browser' => $browser,
-            'login_at' => Carbon::now(),
+            'platform'   => $platform,
+            'browser'    => $browser,
+            'login_at'   => Carbon::now(),
         ]);
 
         $user->authentications()->save($authenticationLog);
 
-        if (! $known && config('auth-log.notify')) {
+        if (!$known && config('auth-log.notify')) {
             $user->notify(new NewDevice($authenticationLog));
         }
     }

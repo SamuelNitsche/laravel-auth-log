@@ -2,14 +2,15 @@
 
 namespace SamuelNitsche\AuthLog\Tests\Models;
 
-use SamuelNitsche\AuthLog\AuthLogable;
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\Authenticatable;
+use SamuelNitsche\AuthLog\AuthLogable;
 
 class User extends Model implements Authenticatable
 {
-    use AuthLogable, Notifiable;
+    use AuthLogable;
+    use Notifiable;
 
     protected $table = 'users';
 
@@ -61,6 +62,7 @@ class User extends Model implements Authenticatable
      * Set the token value for the "remember me" session.
      *
      * @param string $value
+     *
      * @return void
      */
     public function setRememberToken($value)

@@ -33,7 +33,7 @@ class AuthLog extends Model
      * @var array
      */
     protected $casts = [
-        'login_at' => 'datetime',
+        'login_at'  => 'datetime',
         'logout_at' => 'datetime',
     ];
 
