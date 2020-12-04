@@ -31,6 +31,7 @@ class AuthLogServiceProviderTest extends TestCase
     /** @test */
     public function it_registers_the_logout_listener()
     {
+        Mockery::spy(LogSuccessfulLogin::class);
         $listener = Mockery::spy(LogSuccessfulLogout::class);
         app()->instance(LogSuccessfulLogout::class, $listener);
 
